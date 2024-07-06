@@ -1,10 +1,19 @@
 import React from 'react';
 import { faker } from '@faker-js/faker';
 
-const words = faker.word.words(10);
+type GeneratedWordsProps = {
+  words: string;
+};
 
-function App() {
-  return <div className='text-4xl text-center text-slate-500'>{words}</div>;
-}
+const GeneratedWords = (props: GeneratedWordsProps) => {
+  return (
+    <div className='text-4xl text-center text-slate-500'>{props.words}</div>
+  );
+};
 
+const App = () => {
+  const words = faker.word.words(10);
+
+  return <GeneratedWords words={words} />;
+};
 export default App;
