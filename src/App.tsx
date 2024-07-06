@@ -1,5 +1,6 @@
 import React from 'react';
 import { faker } from '@faker-js/faker';
+import RestartButton from './components/RestartButton';
 
 type GeneratedWordsProps = {
   words: string;
@@ -11,9 +12,22 @@ const GeneratedWords = (props: GeneratedWordsProps) => {
   );
 };
 
+const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
+  return <h2 className='text-primary-400 font-medium'>Time: {timeLeft}</h2>;
+};
+
 const App = () => {
   const words = faker.word.words(10);
 
-  return <GeneratedWords words={words} />;
+  return (
+    <>
+      <CountdownTimer timeLeft={30} />
+      <GeneratedWords words={words} />
+      <RestartButton
+        className={'mx-auto mt-10 text-slate-500'}
+        onRestart={() => null}
+      />
+    </>
+  );
 };
 export default App;
